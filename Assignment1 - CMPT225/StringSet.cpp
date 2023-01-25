@@ -131,8 +131,11 @@ StringSet StringSet::intersection(const StringSet& str) const
 StringSet StringSet::difference(const StringSet& str) const 
 {
 	StringSet temp;
-	for (int i = 0; i < currentSize; i++) {
-		if (str.find(arrStr[i]) == -1) {
+
+	for (int i = 0; i < currentSize; i++)
+	{
+		if (str.find(arrStr[i]) == -1) 
+		{
 			temp.insert(arrStr[i]);
 		}
 	}
@@ -155,36 +158,7 @@ void StringSet::doubleTheSize()
 	arrStr = tempArray;
 }
 
-int main()
-{
-	StringSet sset1;
-	sset1.insert("cat");
-	sset1.insert("bat");
-	sset1.insert("rat");
-	bool insertTest = sset1.insert("badger");
-	cout << "insert success: " << insertTest << endl;
 
-	StringSet sset2;
-	sset2.insert("elephant");
-	sset2.insert("bat");
-	sset2.insert("hamster");
-	sset2.insert("weasel");
-	sset2.remove("weasel");
-	int findTest = sset2.find("weasel");
-	cout << "index of weasel = " << findTest << endl;
-
-	// Use the copy constructor to build a StringSet with sset1 U sset2
-	StringSet sset3(sset1.ssUnion(sset2));
-
-	// Use overloaded assignment operator to make a StringSet with sset2 int sset1
-	StringSet sset4;
-	sset4 = sset2.intersection(sset1);
-	// Use overloaded assignment operator to make a StringSet with sset2 - sset1
-	sset4 = sset2.difference(sset1);
-
-	cout << "end basic test" << endl;
-	return 0;
-}
 
 
 
