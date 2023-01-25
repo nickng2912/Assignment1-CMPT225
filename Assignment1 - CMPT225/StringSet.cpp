@@ -43,7 +43,7 @@ StringSet& StringSet::operator= (const StringSet& str)
 		arrStr = new string[maxSize];
 		for (int i = 0; i < currentSize; i++)
 		{
-			arrStr[i] = str.arrStr[i];
+			this->arrStr[i] = str.arrStr[i];
 		}
 	}
 	return *this; 
@@ -98,61 +98,44 @@ int StringSet::size() const
 }
 
 
-StringSet StringSet::ssUnion(const StringSet& str) const
+StringSet StringSet::ssUnion(const StringSet& str) const 
 {
 	StringSet temp; 
 
-	for (int i = 0; i < this->currentSize; i++)
+	for (int i = 0; i < currentSize; i++)
 	{
-		temp.insert(this->arrStr[i]);
+		temp.insert(arrStr[i]);
 	}
 	for (int i = 0; i < str.currentSize; i++)
 	{
 		temp.insert(str.arrStr[i]);
 	}
-	
-	return temp;
-}
 
-StringSet StringSet::intersection(const StringSet& str) const
-{
-	StringSet temp; 
-
-	for (int i = 0; i < this->currentSize; i++)
-	{
-		if (str.find(this->arrStr[i]) != -1)
-			temp.insert(this->arrStr[i]);
-	}
-
-	for (int i = 0; i < str.currentSize; i++)
-	{
-		if (this->find(str.arrStr[i]) != -1)
-		{
-			temp.insert(str.arrStr[i]);
-		}
-	}
-	
 	return temp; 
 }
 
-StringSet StringSet::difference(const StringSet& str) const
+StringSet StringSet::intersection(const StringSet& str) const 
 {
 	StringSet temp;
 
-	for (int i = 0; i < this->currentSize; i++)
+	for (int i = 0; i < currentSize; i++) 
 	{
-		if (str.find(this->arrStr[i]) == -1)
-			temp.insert(this->arrStr[i]);
-	}
-
-	for (int i = 0; i < str.currentSize; i++)
-	{
-		if (this->find(str.arrStr[i]) == -1)
+		if (str.find(arrStr[i]) != -1) 
 		{
-			temp.insert(str.arrStr[i]);
+			temp.insert(arrStr[i]);
 		}
 	}
+	return temp;
+}
 
+StringSet StringSet::difference(const StringSet& str) const 
+{
+	StringSet temp;
+	for (int i = 0; i < currentSize; i++) {
+		if (str.find(arrStr[i]) == -1) {
+			temp.insert(arrStr[i]);
+		}
+	}
 	return temp;
 }
 
@@ -170,13 +153,10 @@ void StringSet::doubleTheSize()
 	
 	delete[] arrStr; 
 	arrStr = tempArray;
-
-	delete[] tempArray;
 }
 
-
-int main() {
-
+int main()
+{
 	StringSet sset1;
 	sset1.insert("cat");
 	sset1.insert("bat");
@@ -203,10 +183,8 @@ int main() {
 	sset4 = sset2.difference(sset1);
 
 	cout << "end basic test" << endl;
-	
-	return 0; 
+	return 0;
 }
-
 
 
 
