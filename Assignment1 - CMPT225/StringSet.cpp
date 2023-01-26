@@ -1,9 +1,6 @@
 #include "StringSet.h"
-#include <iostream> 
-#include <string> 
+#include <string>  
 
-using std::cout;
-using std::endl;
 using std::string;
 
 StringSet::StringSet()
@@ -65,6 +62,7 @@ bool StringSet::insert(string value)
 		doubleTheSize();
 	}
 
+	//Adds the value to the array
 	arrStr[currentSize] = value; 
 	currentSize++;
 	return true;
@@ -120,7 +118,7 @@ StringSet StringSet::intersection(const StringSet& str) const
 
 	for (int i = 0; i < currentSize; i++) 
 	{
-		if (str.find(arrStr[i]) != -1) 
+		if (str.find(arrStr[i]) != -1) //check if there is the value of arrStr in the str's array
 		{
 			temp.insert(arrStr[i]);
 		}
@@ -134,7 +132,7 @@ StringSet StringSet::difference(const StringSet& str) const
 
 	for (int i = 0; i < currentSize; i++)
 	{
-		if (str.find(arrStr[i]) == -1) 
+		if (str.find(arrStr[i]) == -1) // check if there is not the value of arrStr in the str's array
 		{
 			temp.insert(arrStr[i]);
 		}
@@ -157,11 +155,5 @@ void StringSet::doubleTheSize()
 	delete[] arrStr; 
 	arrStr = tempArray;
 }
-
-
-
-
-
-
 
 
